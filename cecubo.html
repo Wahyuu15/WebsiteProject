@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WAHYUSPORTS - Website Perlengkapan Alat Olahraga</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+        --primary: #0093f5;
+        --secondary: #000000;
+        --accent: #FFFFFF;
+        --light: #f8f9fa;
+        --dark: #212529;
+        --success: #28a745;
+        --warning: #f72585;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+        overflow-x: hidden;
+        line-height: 1.6;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    h1, h2, h3, h4 {
+        color: var(--dark);
+    }
+
+    p {
+        color: #666;
+        line-height: 1.6;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .section-title {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        font-weight: 700;
+    }
+
+    .section-title p {
+        font-size: 1.1rem;
+        max-width: 700px;
+        margin: 0 auto;
+        opacity: 0.8;
+    }
+
+    /* Header/Navbar */
+    header {
+        position: fixed;
+        width: 100%;
+        background-color: rgba(255,255,255,0.97);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        z-index: 1000;
+        padding: 15px 0;
+        transition: all 0.3s ease;
+    }
+
+    header.scrolled {
+        padding: 10px 0;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        background-color: rgba(255,255,255,0.98);
+    }
+
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+    }
+
+    .logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        transition: all 0.3s ease;
+    }
+
+    .logo:hover {
+        transform: scale(1.05);
+    }
+
+    .logo i {
+        margin-right: 10px;
+        color: var(--warning);
+        font-size: 1.5rem;
+    }
+
+    nav ul {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+    }
+
+    nav ul li a {
+        text-decoration: none;
+        color: var(--dark);
+        font-weight: 500;
+        transition: all 0.3s ease;
+        position: relative;
+        padding: 5px 0;
+    }
+
+    nav ul li a:hover {
+        color: var(--primary);
+    }
+
+    nav ul li a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        background: var(--primary);
+        bottom: 0;
+        left: 0;
+        transition: width 0.3s ease;
+    }
+
+    nav ul li a:hover::after {
+        width: 100%;
+    }
+
+    .menu-toggle {
+        display: none;
+        cursor: pointer;
+        font-size: 1.5rem;
+        color: var(--dark);
+    }
+
+    /* Hero Section */
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, rgba(0, 147, 245, 0.9) 0%, rgba(247, 37, 133, 0.8) 100%), 
+                    url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        color: white;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, transparent 0%, rgba(0,147,245,0.2) 50%, transparent 100%);
+        animation: shimmer 3s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+    }
+
+    .hero-content {
+        max-width: 600px;
+        text-align: left;
+        position: relative;
+        z-index: 2;
+        animation: fadeInUp 1s ease-out;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        line-height: 1.2;
+        color: white;
+        font-weight: 700;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .hero p {
+        font-size: 1.3rem;
+        margin-bottom: 30px;
+        opacity: 0.95;
+        color: rgba(255,255,255,0.95);
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .cta-button {
+        display: inline-block;
+        background: linear-gradient(45deg, var(--warning), #d21e6e);
+        color: white;
+        padding: 15px 35px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(247, 37, 133, 0.3);
+    }
+
+    .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 25px rgba(247, 37, 133, 0.4);
+        background: linear-gradient(45deg, #d21e6e, var(--warning));
+    }
+
+    .cta-button-secondary {
+        display: inline-block;
+        background-color: transparent;
+        color: white;
+        padding: 15px 35px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: 2px solid white;
+        backdrop-filter: blur(10px);
+    }
+
+    .cta-button-secondary:hover {
+        background-color: white;
+        color: var(--primary);
+        transform: translateY(-3px);
+    }
+
+    /* Products Section */
+    .products {
+        padding: 100px 0;
+        background-color: var(--light);
+    }
+
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+
+    .service-card {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0,0,0,0.03);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .service-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(0,147,245,0.1), transparent);
+        transition: all 0.5s ease;
+    }
+
+    .service-card:hover::before {
+        left: 100%;
+    }
+
+    .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        border-color: var(--primary);
+    }
+
+    .service-icon {
+        font-size: 3rem;
+        color: var(--primary);
+        margin-bottom: 20px;
+        transition: all 0.3s ease;
+    }
+
+    .service-card:hover .service-icon {
+        transform: scale(1.1);
+        color: var(--warning);
+    }
+
+    .service-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .service-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin: 15px 0;
+        transition: all 0.3s ease;
+    }
+
+    .service-card:hover img {
+        transform: scale(1.05);
+    }
+
+    .service-card p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: #666;
+    }
+
+    /* Features Section */
+    .features {
+        padding: 100px 0;
+        background-color: white;
+    }
+
+    .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+    }
+
+    .portfolio-item {
+        background-color: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0,0,0,0.03);
+        position: relative;
+    }
+
+    .portfolio-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+
+    .portfolio-img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        transition: all 0.3s ease;
+    }
+
+    .portfolio-item:hover .portfolio-img {
+        transform: scale(1.1);
+    }
+
+    .portfolio-info {
+        padding: 25px;
+        text-align: center;
+    }
+
+    .portfolio-info h3 {
+        margin-bottom: 10px;
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: var(--dark);
+    }
+
+    .portfolio-info p {
+        margin-bottom: 0;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    /* Footer */
+    footer {
+        background: linear-gradient(135deg, var(--dark) 0%, #1a1a1a 100%);
+        color: white;
+        padding: 60px 0 30px;
+        position: relative;
+    }
+
+    footer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, var(--primary), var(--warning), var(--primary));
+    }
+
+    .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+    }
+
+    .footer-col h3 {
+        color: white;
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+        font-weight: 600;
+    }
+
+    .footer-col h3::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 50px;
+        height: 2px;
+        background: linear-gradient(90deg, var(--primary), var(--warning));
+    }
+
+    .footer-about p {
+        color: #ccc;
+        margin-bottom: 20px;
+        line-height: 1.6;
+    }
+
+    .social-links {
+        display: flex;
+        gap: 15px;
+    }
+
+    .social-links a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 45px;
+        height: 45px;
+        background: linear-gradient(45deg, var(--primary), var(--warning));
+        border-radius: 50%;
+        color: white;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: 1.1rem;
+    }
+
+    .social-links a:hover {
+        transform: translateY(-3px) scale(1.1);
+        box-shadow: 0 10px 20px rgba(0,147,245,0.3);
+    }
+
+    .footer-contact ul {
+        list-style: none;
+    }
+
+    .footer-contact ul li {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        transition: all 0.3s ease;
+    }
+
+    .footer-contact ul li:hover {
+        transform: translateX(5px);
+    }
+
+    .footer-contact ul li i {
+        margin-right: 15px;
+        color: var(--primary);
+        width: 20px;
+        font-size: 1.1rem;
+    }
+
+    .footer-contact ul li a {
+        color: #ccc;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .footer-contact ul li a:hover {
+        color: white;
+    }
+
+    .footer-newsletter p {
+        color: #ccc;
+        margin-bottom: 20px;
+        line-height: 1.6;
+    }
+
+    .newsletter-form {
+        display: flex;
+        border-radius: 50px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .newsletter-form input {
+        flex: 1;
+        padding: 15px 20px;
+        border: none;
+        font-size: 1rem;
+        outline: none;
+        background-color: rgba(255,255,255,0.1);
+        color: white;
+        backdrop-filter: blur(10px);
+    }
+
+    .newsletter-form input::placeholder {
+        color: rgba(255,255,255,0.7);
+    }
+
+    .newsletter-form button {
+        background: linear-gradient(45deg, var(--primary), var(--warning));
+        color: white;
+        border: none;
+        padding: 0 25px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 1.1rem;
+    }
+
+    .newsletter-form button:hover {
+        background: linear-gradient(45deg, var(--warning), var(--primary));
+        transform: scale(1.05);
+    }
+
+    .footer-bottom {
+        text-align: center;
+        padding-top: 30px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        color: #aaa;
+        font-size: 0.9rem;
+    }
+
+    /* Back to Top */
+    .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 55px;
+        height: 55px;
+        background: linear-gradient(45deg, var(--primary), var(--warning));
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        font-size: 1.2rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 999;
+        box-shadow: 0 5px 15px rgba(0,147,245,0.3);
+    }
+
+    .back-to-top.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .back-to-top:hover {
+        transform: translateY(-5px) scale(1.1);
+        box-shadow: 0 15px 25px rgba(0,147,245,0.4);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+        .hero h1 {
+            font-size: 2.8rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+        }
+
+        .services-grid {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+
+        .portfolio-grid {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+    }
+
+    @media (max-width: 768px) {
+        .menu-toggle {
+            display: block;
+        }
+        
+        nav {
+            position: fixed;
+            top: 80px;
+            left: -100%;
+            width: 80%;
+            height: calc(100vh - 80px);
+            background-color: rgba(255,255,255,0.98);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+        
+        nav.active {
+            left: 0;
+        }
+        
+        nav ul {
+            flex-direction: column;
+            padding: 30px 20px;
+            gap: 15px;
+        }
+        
+        nav ul li a {
+            font-size: 1.1rem;
+            padding: 10px 0;
+        }
+        
+        .hero {
+            padding: 120px 0 60px;
+            background-attachment: scroll;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+        }
+        
+        .hero p {
+            font-size: 1rem;
+        }
+
+        .hero-content {
+            text-align: center;
+        }
+        
+        .cta-buttons {
+            justify-content: center;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .cta-button, .cta-button-secondary {
+            width: 100%;
+            text-align: center;
+            max-width: 300px;
+        }
+
+        .services-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .portfolio-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .footer-grid {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .newsletter-form {
+            flex-direction: column;
+            border-radius: 15px;
+        }
+
+        .newsletter-form input {
+            border-radius: 15px 15px 0 0;
+        }
+
+        .newsletter-form button {
+            border-radius: 0 0 15px 15px;
+            padding: 15px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .container {
+            padding: 0 15px;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+        }
+        
+        .section-title h2 {
+            font-size: 1.8rem;
+        }
+
+        .service-card {
+            padding: 20px;
+        }
+
+        .portfolio-info {
+            padding: 20px;
+        }
+
+        .back-to-top {
+            width: 50px;
+            height: 50px;
+            bottom: 20px;
+            right: 20px;
+        }
+    }
+
+    /* Loading Animation */
+    .loading {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+    }
+
+    .loading.loaded {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Smooth Scrolling Enhancement */
+    @media (prefers-reduced-motion: no-preference) {
+        html {
+            scroll-behavior: smooth;
+        }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header id="header">
+    <div class="header-container container">
+      <a href="#" class="logo">
+        <i class="fas fa-dumbbell"></i>
+        WAHYUSPORTS
+      </a>
+      <nav id="nav">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#services">Products</a></li>
+          <li><a href="#portfolio">Features</a></li>         
+          <li><a href="#contact">Kontak</a></li>
+        </ul>
+      </nav>
+      <div class="menu-toggle" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>WAHYUSPORTS</h1>
+      <p>"Kualitas Premium untuk Hasil Maksimal"</p>
+      <a href="#services" class="cta-button">Yuk Jelajahi</a>
+      <a href="#portfolio" class="cta-button-secondary">Lihat Layanan</a>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-title">
+        <h2>Layanan Kami</h2>
+        <p>Layanan digital untuk meningkatkan kualitas bisniS Anda secara menyeluruh.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Peralatan Fitness</h3>
+          <div class="product-image-container">
+                    <img src="Peralatan Fitness.jpeg" alt="Peralatan Fitness" class="product-image">
+                </div>
+                <p>Dumbbell, barbell, dan peralatan fitness berkualitas tinggi untuk latihan di rumah maupun gym profesional.</p>
+        </div>
+        <div class="service-card">
+          <h3>Sepatu Olahraga</h3>
+           <div class="product-image-container">
+                    <img src="Sepatu Olahraga.jpeg" alt="Sepatu Olahraga" class="product-image">
+                </div>
+                <p>Koleksi sepatu olahraga terbaru dari berbagai merek ternama untuk berbagai jenis aktivitas olahraga.</p>  
+        </div>
+        <div class="service-card">
+          <h3>Pakaian Olahraga</h3>
+          <div class="product-image-container">
+                    <img src="Pakaian Olahraga.jpeg" alt="Pakaian Olahraga" class="product-image">
+                </div>
+                <p>Kaos, celana, dan jersey berkualitas dengan bahan yang nyaman dan teknologi terdepan.</p>
+        </div>
+        <div class="service-card">
+          <h3>Perlengkapan Olahraga</h3>
+          <div class="product-image-container">
+                    <img src="Perlengkapan Olahraga.jpeg" alt="Perlengkapan Olahraga" class="product-image">
+                </div>
+                <p>Bola, raket, dan aksesoris olahraga untuk berbagai cabang olahraga favorit Anda.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section class="portfolio" id="portfolio">
+    <div class="container">
+      <div class="section-title">
+        <h2>Mengapa Memilih Kami?</h2>
+        <p>Kami menyediakan perlengkapan olahraga berkualitas tinggi dengan harga bersaing dan layanan terbaik untuk Anda.</p>
+      </div>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <img src="Kualitas Premium.jpeg" class="portfolio-img" alt="Website Company Profile">
+          <div class="portfolio-info">
+            <h3>Kualitas Premium</h3>
+            <p>Produk berkualitas tinggi dari merek-merek terpercaya dunia.</p>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <img src="Pengiriman Cepat.jpeg" class="portfolio-img" alt="Aplikasi UMKM">
+          <div class="portfolio-info">
+            <h3>Pengiriman Cepat</h3>
+            <p>Layanan pengiriman cepat ke seluruh Indonesia dengan packaging aman.</p>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <img src="Layanan Umum.jpeg" class="portfolio-img" alt="Desain Toko Online">
+          <div class="portfolio-info">
+            <h3>Layanan Umum</h3>
+            <p>Customer service yang responsif dan after-sales service yang memuaskan.</p>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <img src="Limited Promo.jpeg" class="portfolio-img" alt="Desain Toko Online">
+          <div class="portfolio-info">
+            <h3>Harga Kompetitif</h3>
+            <p>Harga terbaik dengan berbagai promo menarik setiap bulannya.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container footer-grid">
+      <div class="footer-col footer-about">
+        <h3>Tentang WAHYUSPORTS</h3>
+        <p>Dipercaya ribuan pelanggan, kami hadir sebagai solusi lengkap kebutuhan olahraga Anda.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div class="footer-col footer-contact">
+        <h3>Kontak</h3>
+        <ul>
+          <li><i class="fas fa-phone"></i> <a href="tel:+6281234567890">+62 852-1311-5492</a></li>
+          <li><i class="fas fa-envelope"></i> <a href="mailto:info@devpro.com">Wahyu Cahyadi Ramadhan</a></li>
+          <li><i class="fas fa-map-marker-alt"></i> Bengkalis, Riau, Indonesia</li>
+        </ul>
+      </div>
+      <div class="footer-col footer-newsletter">
+        <h3>Newsletter</h3>
+        <p>Langganan untuk tips & penawaran menarik!</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Email Anda" required>
+          <button type="submit"><i class="fas fa-paper-plane"></i></button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 WAHYUSPORTS. All rights reserved.
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top"><i class="fas fa-chevron-up"></i></a>
+
+  <script>
+    // Tombol back to top muncul saat scroll
+    window.addEventListener('scroll', () => {
+      const toTop = document.querySelector('.back-to-top');
+      if (window.scrollY > 300) {
+        toTop.classList.add('active');
+      } else {
+        toTop.classList.remove('active');
+      }
+    });
+
+
+  </script>
+  </body>
+  </html>
